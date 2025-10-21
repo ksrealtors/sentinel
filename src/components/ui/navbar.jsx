@@ -1,5 +1,6 @@
 import * as React from "react";
 import logo from "../../assets/logo.png";
+
 export function Navbar() {
   return (
     <nav
@@ -18,7 +19,7 @@ export function Navbar() {
           <img
             src={logo}
             alt="Logo"
-            class="h-14 w-auto object-contain md:h-16 lg:h-20"
+            class="h-14 w-auto object-contain md:h-16 lg:h-24 -ml-6"
           />
         </a>
         <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
@@ -60,8 +61,8 @@ export function Navbar() {
           <ul class="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
             <li>
               <a
-                href="#"
-                class="block py-2 px-3 underline underline-offset-4 text-white bg-green-700 rounded-sm md:bg-transparent md:text-orange-200 transition-all ease-linear md:p-0 md:dark:text-blue-500"
+                href="#home"
+                class="block py-2 px-3 text-white rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:hover:text-orange-200 transition-all ease-linear md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
                 aria-current="page"
               >
                 Home
@@ -69,7 +70,7 @@ export function Navbar() {
             </li>
             <li>
               <a
-                href="#"
+                href="#about"
                 class="block py-2 px-3 text-white rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:hover:text-orange-200 transition-all ease-linear md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
               >
                 About
@@ -77,7 +78,7 @@ export function Navbar() {
             </li>
             <li>
               <a
-                href="#"
+                href="#services"
                 class="block py-2 px-3 text-white rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:hover:text-orange-200 transition-all ease-linear md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
               >
                 Services

@@ -2,7 +2,7 @@ import React, { useRef } from "react";
 import landing from "../assets/landing.jpg";
 import { motion, useAnimate, useAnimation, useInView } from "framer-motion";
 import { CiSearch } from "react-icons/ci";
-
+import person from "../assets/person.png";
 import { Input } from "@/components/ui/input";
 import {
   Carousel,
@@ -11,6 +11,8 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import ExpandableCards from "@/components/ui/cards";
+
 function Home() {
   const data = [
     {
@@ -89,13 +91,14 @@ function Home() {
   return (
     <>
       <div
+        id="home"
         className="w-screen h-screen bg-cover bg-center justify-between flex flex-col items-center py-40 px-10 relative"
         style={{ backgroundImage: `url(${landing})` }}
       >
         <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/40 to-transparent"></div>
         <div data-scroll data-scroll-speed="0.5" className="text-center">
           <p className="text-white text-8xl relative tracking-widest font-serif">
-            KS Realtors
+            K S Realtors
           </p>
           <p className="text-2xl text-white relative font-serif tracking-widest">
             Where dreams meet reality;
@@ -104,7 +107,7 @@ function Home() {
         <div
           data-scroll
           data-scroll-speed="0.2"
-          className="w-2/3 relative backdrop-blur"
+          className="w-2/3 relative backdrop-blur rounded-full"
         >
           <div className="absolute top-1/2 left-4 transform -translate-y-1/2 text-base hover:text-black transition-colors duration-300">
             <CiSearch size={36} />
@@ -121,9 +124,9 @@ function Home() {
 
       <div className="h-fit w-screen flex relative items-start py-6">
         <div className="absolute h-full w-full inset-0 bg-gradient-to-t from-orange-400/100 via-white/100 to-transparent"></div>
-        <Carousel className="w-full gap-5 p-4 flex flex-col">
+        {/* <Carousel className="w-full gap-5 p-4 flex flex-col">
           <div className="flex justify-between">
-            <p className="text-3xl w-1/3 p-2 justify-center border-l border-b rounded-tl-2xl  border-orange-400 tracking-wide font-medium text-orange-400">
+            <p className="text-3xl w-1/3 p-2 font-serif justify-center border-l border-b rounded-tl-2xl  border-orange-400 tracking-wide font-medium text-orange-400">
               Featured Properties
             </p>
             <div className="flex ml-auto justify-end gap-4 p-1.5 w-1/4 border-r border-t rounded-ee-2xl  border-orange-400">
@@ -162,63 +165,15 @@ function Home() {
               </CarouselItem>
             ))}
           </CarouselContent>
-        </Carousel>
-        {/* <Carousel
-            items={[
-              {
-                category: "Luxury Villa",
-                title: "Sea Breeze Residency",
-                src: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80",
-                content: <p>Infinity pool with ocean view.</p>,
-              },
-              {
-                category: "Modern Apartment",
-                title: "Urban Heights",
-                src: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80",
-                content: <p>City-center modern 3BHK apartments.</p>,
-              },
-              {
-                category: "Commercial Space",
-                title: "Skyline Plaza",
-                src: "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=800&q=80",
-                content: <p>Flexible office spaces, 24/7 security.</p>,
-              },
-              {
-                category: "Farmhouse",
-                title: "Green Valley Estate",
-                src: "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=800&q=80",
-                content: <p>Private garden with solar energy.</p>,
-              },
-              {
-                category: "Beachfront Property",
-                title: "Azure Shore Haven",
-                src: "https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&w=800&q=80",
-                content: <p>Beachfront living with sunrise views.</p>,
-              },
-              {
-                category: "Mountain Retreat",
-                title: "Highland Escape",
-                src: "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=800&q=80",
-                content: <p>Eco-friendly mountain retreat getaway.</p>,
-              },
-              {
-                category: "City Penthouse",
-                title: "The Skyline Crown",
-                src: "https://images.unsplash.com/photo-1527030280862-64139fba04ca?auto=format&fit=crop&w=800&q=80",
-                content: <p>Luxury penthouse with city view.</p>,
-              },
-              {
-                category: "Countryside Cottage",
-                title: "Willow Creek Cottage",
-                src: "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=800&q=80",
-                content: <p>Rustic countryside cottage escape.</p>,
-              },
-            ]}
-          /> */}
+        </Carousel> */}
+        <ExpandableCards />
       </div>
 
-      <div className="h-fit w-screen p-4 bg-gradient-to-b from-orange-400 to-orange-600 ">
-        <p className="w-1/3 border-l border-b rounded-tl-2xl p-2 border-white font-medium text-3xl text-white tracking-wide">
+      <div
+        id="#services"
+        className="h-fit w-screen p-4 bg-gradient-to-b from-orange-400 to-lime-500 "
+      >
+        <p className="w-1/3 border-l font-serif border-b rounded-tl-2xl p-2 border-white font-medium text-3xl text-white tracking-wide">
           What we offer
         </p>
         <div className="flex flex-col py-10 px-4 gap-10 w-full">
@@ -230,7 +185,7 @@ function Home() {
               transition={{ duration: 0.6, delay: idx * 0.2 }}
               viewport={{ once: true }}
               className={`flex ${
-                idx % 2 === 0 ? "flex-row-reverse" : ""
+                idx % 2 === 0 ? "flex-row-reverse" : "flex-row"
               } p-8 rounded-full items-center bg-gradient-to-${
                 idx % 2 === 0 ? "l" : "r"
               } from-white/30 to-transparent`}
@@ -248,6 +203,82 @@ function Home() {
             </motion.div>
           ))}
         </div>
+      </div>
+
+      {/* About me */}
+      <div
+        id="about"
+        className="h-fit w-screen bg-gradient-to-b from-lime-500 via-white to-orange-100 p-20 flex items-center justify-center"
+      >
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="w-full h-[30rem] flex items-center justify-between rounded-3xl backdrop-blur-md bg-white/30 shadow-2xl overflow-hidden"
+        >
+          <motion.div
+            initial={{ opacity: 0, x: -100 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="w-1/2 p-12 flex flex-col justify-center text-gray-800 space-y-6"
+          >
+            <p className="text-5xl font-serif font-semibold text-orange-500">
+              About Me
+            </p>
+            <p className="text-sm leading-relaxed font-light">
+              I’m <span className="font-semibold">Gorakh Baviskar</span>, a
+              dedicated real estate consultant and the founder of{" "}
+              <span className="font-semibold text-orange-500">KS Realtors</span>
+              . With years of experience helping families, investors, and
+              businesses find the right properties, my mission is simple — to
+              turn your real estate dreams into lasting realities. Whether it’s
+              luxury homes, investment opportunities, or commercial spaces, I
+              believe every deal deserves transparency, trust, and personal
+              attention. With over 25 years of experience in the real estate and
+              marketing industry, I have built a strong career specializing in
+              sales strategy, client relations, and business development. Since
+              beginning my journey in 1996, I’ve successfully managed and led
+              sales teams, designed impactful marketing campaigns, and nurtured
+              lasting customer relationships across diverse projects. As a
+              forward-thinking leader, I take pride in combining strategic
+              vision with hands-on execution to drive growth, exceed targets,
+              and deliver exceptional client satisfaction.
+            </p>
+            <p className="text-lg italic text-gray-700">
+              “Real estate isn’t just about property — it’s about people,
+              purpose, and passion.”
+            </p>
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, x: 100 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="w-1/2 p-12 flex flex-col justify-center text-gray-800 space-y-6"
+          >
+            <img
+              src={person}
+              alt="Realtor"
+              className="h-full w-full object-contain scale-x-[-1]"
+            />
+          </motion.div>
+          {/* 
+          <motion.div
+            initial={{ opacity: 0, x: 100 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="w-1/2 bg-red-400 h-full flex justify-center items-center"
+          >
+            a
+            <div className="relative w-full h-full flex justify-center items-center">
+              <img
+                src={person}
+                alt="Realtor"
+                className="h-80 w-full object-fill scale-x-[-1]"
+              />
+              <div className="absolute bottom-0 left-0 right-0 h-40 w-60 mx-auto bg-gradient-to-b from-transparent via-white/10 to-orange-50"></div>
+            </div>
+          </motion.div> */}
+        </motion.div>
       </div>
     </>
   );
