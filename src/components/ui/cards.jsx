@@ -155,7 +155,7 @@ export default function ExpandableCards() {
           </div>
         ) : null}
       </AnimatePresence>
-      <p className="text-3xl w-1/3 p-2 mx-4 font-serif justify-center border-l border-b rounded-tl-2xl border-orange-400 tracking-wide font-medium text-orange-400">
+      <p className="text-3xl w-1/3 p-2 m-4 font-serif justify-center border-l border-b rounded-tl-2xl border-orange-400 tracking-wide font-medium text-orange-400">
         Featured Properties
       </p>
       <ul className="mx-auto p-2 w-full grid grid-cols-1 md:grid-cols-5 items-start gap-4">

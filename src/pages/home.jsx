@@ -124,6 +124,7 @@ function Home() {
 
       <div className="h-fit w-screen flex relative items-start py-6">
         <div className="absolute h-full w-full inset-0 bg-gradient-to-t from-orange-400/100 via-white/100 to-transparent"></div>
+        <ExpandableCards />
         {/* <Carousel className="w-full gap-5 p-4 flex flex-col">
           <div className="flex justify-between">
             <p className="text-3xl w-1/3 p-2 font-serif justify-center border-l border-b rounded-tl-2xl  border-orange-400 tracking-wide font-medium text-orange-400">
@@ -166,11 +167,10 @@ function Home() {
             ))}
           </CarouselContent>
         </Carousel> */}
-        <ExpandableCards />
       </div>
 
       <div
-        id="#services"
+        id="services"
         className="h-fit w-screen p-4 bg-gradient-to-b from-orange-400 to-lime-500 "
       >
         <p className="w-1/3 border-l font-serif border-b rounded-tl-2xl p-2 border-white font-medium text-3xl text-white tracking-wide">
