@@ -1,16 +1,9 @@
-import React, { useRef } from "react";
+import React from "react";
 import landing from "../assets/landing.jpg";
-import { motion, useAnimate, useAnimation, useInView } from "framer-motion";
+import { motion } from "framer-motion";
 import { CiSearch } from "react-icons/ci";
 import person from "../assets/person.png";
 import { Input } from "@/components/ui/input";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
 import ExpandableCards from "@/components/ui/cards";
 
 function Home() {
@@ -92,7 +85,7 @@ function Home() {
     <>
       <div
         id="home"
-        className="w-screen h-screen bg-cover bg-center justify-between flex flex-col items-center py-40 px-10 relative"
+        className="w-screen h-screen bg-cover justify-between flex flex-col items-center py-40 px-10 relative"
         style={{ backgroundImage: `url(${landing})` }}
       >
         <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/40 to-transparent"></div>
@@ -122,7 +115,10 @@ function Home() {
         </div>
       </div>
 
-      <div className="h-fit w-screen flex relative items-start py-6">
+      <div
+        id="featured"
+        className="h-fit w-screen flex relative items-start py-6"
+      >
         <div className="absolute h-full w-full inset-0 bg-gradient-to-t from-orange-400/100 via-white/100 to-transparent"></div>
         <ExpandableCards />
         {/* <Carousel className="w-full gap-5 p-4 flex flex-col">
@@ -210,37 +206,32 @@ function Home() {
         id="about"
         className="h-fit w-screen bg-gradient-to-b from-lime-500 via-white to-orange-100 p-20 flex items-center justify-center"
       >
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="w-full h-[30rem] flex items-center justify-between rounded-3xl backdrop-blur-md bg-white/30 shadow-2xl overflow-hidden"
-        >
+        <motion.div className="w-full h-[30rem] flex items-center justify-between rounded-3xl backdrop-blur-md bg-white/30 shadow-2xl overflow-hidden">
           <motion.div
             initial={{ opacity: 0, x: -100 }}
             whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
+            transition={{ duration: 0.8 }}
             className="w-1/2 p-12 flex flex-col justify-center text-gray-800 space-y-6"
           >
             <p className="text-5xl font-serif font-semibold text-orange-500">
               About Me
             </p>
             <p className="text-sm leading-relaxed font-light">
-              I’m <span className="font-semibold">Gorakh Baviskar</span>, a
-              dedicated real estate consultant and the founder of{" "}
+              Gorakh Baviskar is a dedicated real estate consultant and the
+              founder of{" "}
               <span className="font-semibold text-orange-500">KS Realtors</span>
-              . With years of experience helping families, investors, and
-              businesses find the right properties, my mission is simple — to
-              turn your real estate dreams into lasting realities. Whether it’s
-              luxury homes, investment opportunities, or commercial spaces, I
-              believe every deal deserves transparency, trust, and personal
-              attention. With over 25 years of experience in the real estate and
-              marketing industry, I have built a strong career specializing in
-              sales strategy, client relations, and business development. Since
-              beginning my journey in 1996, I’ve successfully managed and led
+              . With years of experience assisting families, investors, and
+              businesses in finding the right properties, his mission is to turn
+              real estate dreams into lasting realities. Whether it involves
+              luxury homes, investment opportunities, or commercial spaces,
+              every deal is approached with transparency, trust, and personal
+              attention. With over 25 years in the real estate and marketing
+              industry, Gorakh has built a strong career specializing in sales
+              strategy, client relations, and business development. Since
+              beginning his journey in 1996, he has successfully managed and led
               sales teams, designed impactful marketing campaigns, and nurtured
               lasting customer relationships across diverse projects. As a
-              forward-thinking leader, I take pride in combining strategic
+              forward-thinking leader, Gorakh takes pride in combining strategic
               vision with hands-on execution to drive growth, exceed targets,
               and deliver exceptional client satisfaction.
             </p>
@@ -252,7 +243,7 @@ function Home() {
           <motion.div
             initial={{ opacity: 0, x: 100 }}
             whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
+            transition={{ duration: 0.8 }}
             className="w-1/2 p-12 flex flex-col justify-center text-gray-800 space-y-6"
           >
             <img
@@ -265,7 +256,7 @@ function Home() {
           <motion.div
             initial={{ opacity: 0, x: 100 }}
             whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
+            transition={{ duration: 0.8}}
             className="w-1/2 bg-red-400 h-full flex justify-center items-center"
           >
             a

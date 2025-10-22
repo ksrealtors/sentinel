@@ -47,12 +47,7 @@ export default function ExpandableCards() {
   useOutsideClick(ref, () => setActive(null));
 
   return (
-    <motion.div
-      initial={{ opacity: 0, x: 30 }}
-      whileInView={{ opacity: 1, x: 0 }}
-      transition={{ duration: 0.5, delay: 0.1 }}
-      className="relative"
-    >
+    <motion.div initial={{ opacity: 1 }} className="relative">
       <AnimatePresence>
         {active && typeof active === "object" && (
           <motion.div
@@ -144,8 +139,8 @@ export default function ExpandableCards() {
                   >
                     <div className="h-40 overflow-y-auto pr-2">
                       {active.content &&
-                        (active.content.props.children.length > 200
-                          ? `${active.content.props.children.slice(0, 200)}...`
+                        (active.content.props.children.length > 300
+                          ? `${active.content.props.children.slice(0, 300)}...`
                           : active.content)}
                     </div>
                   </motion.div>
@@ -158,7 +153,7 @@ export default function ExpandableCards() {
       <p className="text-3xl w-1/3 p-2 m-4 font-serif justify-center border-l border-b rounded-tl-2xl border-orange-400 tracking-wide font-medium text-orange-400">
         Featured Properties
       </p>
-      <ul className="mx-auto p-2 w-full grid grid-cols-1 md:grid-cols-5 items-start gap-4">
+      <ul className="mx-auto p-2 w-screen flex justify-between items-start gap-5">
         {cards.map((card, idx) => (
           <motion.div
             layoutId={`card-${card.title}-${id}`}
@@ -286,20 +281,6 @@ const cards = [
         Green Valley Estate is a serene farmhouse surrounded by lush greenery
         and private gardens. This eco-friendly property incorporates sustainable
         features such as solar energy and rainwater harvesting.
-      </p>
-    ),
-  },
-  {
-    description: "Beachfront Property",
-    title: "Azure Shore Haven",
-    src: "https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&w=800&q=80",
-    ctaText: "Visit",
-    ctaLink: "#",
-    content: (
-      <p>
-        Azure Shore Haven offers a luxurious beachfront living experience with
-        spectacular sunrise views over the ocean. The property features modern
-        architecture, expansive terraces, and direct beach access.
       </p>
     ),
   },
