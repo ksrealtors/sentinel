@@ -182,8 +182,8 @@ function Home() {
               viewport={{ once: true }}
               className={`flex ${
                 idx % 2 === 0 ? "flex-row-reverse" : "flex-row"
-              } p-8 rounded-full items-center bg-gradient-to-${
-                idx % 2 === 0 ? "l" : "r"
+              } p-8 rounded-full items-center  ${
+                idx % 2 === 0 ? "bg-gradient-to-l" : "bg-gradient-to-r"
               } from-white/30 to-transparent`}
             >
               <div className="h-1/2">
