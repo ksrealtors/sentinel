@@ -204,7 +204,7 @@ function Home() {
       {/* About me */}
       <div
         id="about"
-        className="h-fit w-screen bg-gradient-to-b from-lime-500 via-white to-orange-100 p-20 flex items-center justify-center"
+        className="h-screen w-screen bg-gradient-to-b from-lime-500 via-white to-orange-100 p-20 flex items-center justify-center"
       >
         <motion.div className="w-full h-[30rem] flex items-center justify-between rounded-3xl backdrop-blur-md bg-white/30 shadow-2xl overflow-hidden">
           <motion.div

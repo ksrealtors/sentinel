@@ -1,16 +1,22 @@
 import "./App.css";
 import { Route, Routes } from "react-router-dom";
 import Home from "./pages/home";
-import { Navbar } from "./components/ui/navbar";
 import LocomotiveScroll from "locomotive-scroll";
+import HOC from "./components/ui/hoc";
 
 function App() {
   new LocomotiveScroll();
   return (
     <>
-      <Navbar />
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route
+          path="/"
+          element={
+            <HOC>
+              <Home />
+            </HOC>
+          }
+        />
       </Routes>
     </>
   );
