@@ -1,12 +1,76 @@
-import React from "react";
+import React, { useEffect } from "react";
 import landing from "../assets/landing.jpg";
 import { motion } from "framer-motion";
 import { CiSearch } from "react-icons/ci";
 import person from "../assets/person.png";
 import { Input } from "@/components/ui/input";
 import ExpandableCards from "@/components/ui/cards";
+import { useLocation } from "react-router-dom";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 function Home() {
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.state?.scrollTo) {
+      const section = document.getElementById(location.state.scrollTo);
+      if (section) {
+        setTimeout(() => {
+          section.scrollIntoView({ behavior: "smooth" });
+        }, 200); // allow render time
+      }
+    }
+  }, [location]);
+
+  useEffect(() => {
+    // GSAP ScrollTrigger for hero section parallax
+    const heroText = document.querySelector(".hero-text");
+    const heroSearch = document.querySelector(".hero-search");
+
+    gsap.to(heroText, {
+      y: -300,
+      ease: "none",
+      scrollTrigger: {
+        trigger: "#home",
+        start: "top top",
+        end: "bottom top",
+        scrub: true,
+      },
+    });
+
+    gsap.to(heroSearch, {
+      y: -150,
+      ease: "none",
+      scrollTrigger: {
+        trigger: "#home",
+        start: "top top",
+        end: "bottom top",
+        scrub: true,
+      },
+    });
+  }, []);
+
+  useEffect(() => {
+    const cards = document.querySelectorAll(".service-card");
+    gsap.to(cards, {
+      x: 0,
+      opacity: 1,
+      stagger: 0.2,
+      scrollTrigger: {
+        trigger: "#services",
+        start: "top 80%",
+        end: "bottom 20%",
+        scrub: true,
+      },
+      x: 0,
+      opacity: 1,
+      from: { x: 100, opacity: 0 },
+    });
+  }, []);
+
   const data = [
     {
       category: "Luxury Villa",
@@ -89,28 +153,22 @@ function Home() {
         style={{ backgroundImage: `url(${landing})` }}
       >
         <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/40 to-transparent"></div>
-        <div data-scroll data-scroll-speed="0.5" className="text-center">
-          <p className="text-white text-8xl relative tracking-widest font-serif">
+        <div className="hero-text text-center relative z-10">
+          <p className="text-white text-8xl tracking-widest font-serif">
             K S Realtors
           </p>
-          <p className="text-2xl text-white relative font-serif tracking-widest">
+          <p className="text-2xl text-white font-serif tracking-widest mt-4">
             Where dreams meet reality;
           </p>
         </div>
-        <div
-          data-scroll
-          data-scroll-speed="0.2"
-          className="w-2/3 relative backdrop-blur rounded-full"
-        >
+        <div className="hero-search w-2/3 relative z-10 mt-16 backdrop-blur rounded-full">
           <div className="absolute top-1/2 left-4 transform -translate-y-1/2 text-base hover:text-black transition-colors duration-300">
             <CiSearch size={36} />
           </div>
 
           <Input
-            placeholder={"Search..."}
-            className={
-              "w-full bg-white rounded-full p-8 px-14 opacity-40 text-gray-600 !text-2xl font-medium"
-            }
+            placeholder="Search..."
+            className="w-full bg-white rounded-full p-8 px-14 opacity-40 text-gray-600 !text-2xl font-medium"
           />
         </div>
       </div>
@@ -121,48 +179,6 @@ function Home() {
       >
         <div className="absolute h-full w-full inset-0 bg-gradient-to-t from-orange-400/100 via-white/100 to-transparent"></div>
         <ExpandableCards />
-        {/* <Carousel className="w-full gap-5 p-4 flex flex-col">
-          <div className="flex justify-between">
-            <p className="text-3xl w-1/3 p-2 font-serif justify-center border-l border-b rounded-tl-2xl  border-orange-400 tracking-wide font-medium text-orange-400">
-              Featured Properties
-            </p>
-            <div className="flex ml-auto justify-end gap-4 p-1.5 w-1/4 border-r border-t rounded-ee-2xl  border-orange-400">
-              <CarouselPrevious
-                className={
-                  "bg-orange-400 text-white hover:bg-orange-500 hover:text-white"
-                }
-              />
-              <CarouselNext
-                className={
-                  "bg-orange-400 text-white hover:bg-orange-500 hover:text-white"
-                }
-              />
-            </div>
-          </div>
-          <CarouselContent>
-            {data.map((item, index) => (
-              <CarouselItem
-                key={index}
-                className="basis-1/3 shrink-0 space-y-2"
-              >
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, x: 30 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.5, delay: 0.1 }}
-                  style={{ backgroundImage: `url(${item.src})` }}
-                  className="relative rounded-2xl h-80 p-4 flex w-full bg-cover bg-no-repeat"
-                >
-                  <div className="absolute rounded-2xl inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
-                  <div className="relative tracking-wide mt-auto text-white">
-                    <p className="text-sm font-semibold">{item.category}</p>
-                    <p className="text-2xl">{item.title}</p>
-                  </div>
-                </motion.div>
-              </CarouselItem>
-            ))}
-          </CarouselContent>
-        </Carousel> */}
       </div>
 
       <div
@@ -174,17 +190,19 @@ function Home() {
         </p>
         <div className="flex flex-col py-10 px-4 gap-10 w-full">
           {services.map((item, idx) => (
-            <motion.div
+            <div
               key={idx}
-              initial={{ opacity: 0, x: idx % 2 === 0 ? 100 : -100 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, delay: idx * 0.2 }}
-              viewport={{ once: true }}
-              className={`flex ${
+              className={`service-card flex ${
                 idx % 2 === 0 ? "flex-row-reverse" : "flex-row"
-              } p-8 rounded-full items-center  ${
-                idx % 2 === 0 ? "bg-gradient-to-l" : "bg-gradient-to-r"
-              } from-white/30 to-transparent`}
+              } p-8 rounded-full items-center bg-gradient-to-r from-white/30 to-transparent`}
+              style={{
+                opacity: 0,
+                transform: `translateX(${idx % 2 === 0 ? "100px" : "-100px"})`,
+                backgroundImage:
+                  idx % 2 === 0
+                    ? "linear-gradient(to left, rgba(255,255,255,0.3), transparent)"
+                    : "linear-gradient(to right, rgba(255,255,255,0.3), transparent)",
+              }}
             >
               <div className="h-1/2">
                 <img
@@ -196,7 +214,7 @@ function Home() {
                 <p className="text-3xl font-semibol">{item.title}</p>
                 <p className="text-xl font-light">{item.description}</p>
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>

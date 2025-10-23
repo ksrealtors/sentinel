@@ -1,11 +1,10 @@
 import "./App.css";
 import { Route, Routes } from "react-router-dom";
 import Home from "./pages/home";
-import LocomotiveScroll from "locomotive-scroll";
 import HOC from "./components/ui/hoc";
+import Contact from "./pages/contact";
 
 function App() {
-  new LocomotiveScroll();
   return (
     <>
       <Routes>
@@ -14,6 +13,14 @@ function App() {
           element={
             <HOC>
               <Home />
+            </HOC>
+          }
+        />
+        <Route
+          path="/contact"
+          element={
+            <HOC>
+              <Contact />
             </HOC>
           }
         />
